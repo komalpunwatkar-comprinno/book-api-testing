@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "40eccc78-05a7-4d9f-ad18-9ce2b4342c61",
+    "name": "DummyRestAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53597912",
+    "_collection_link": "https://go.postman.co/collection/53597912-40eccc78-05a7-4d9f-ad18-9ce2b4342c61?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Single book is fetched\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "pm.test(\"Response has id\", function(){\r",
+              "    pm.expect(response).to.have.property(\"id\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books/:Id",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books",
+            ":Id"
+          ],
+          "variable": [
+            {
+              "key": "Id",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200 OK\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time is less then 200\", function(){\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 201,\r\n    \"title\": \"Book 201\",\r\n    \"description\": \"Lorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\n\",\r\n    \"pageCount\": 1000,\r\n    \"excerpt\": \"Lorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\n\",\r\n    \"publishDate\": \"2026-03-22T08:55:16.4369674+00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update user data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response matches request body\", function () {\r",
+              "    let requestData = JSON.parse(pm.request.body.raw);\r",
+              "    let responseData = pm.response.json();\r",
+              "\r",
+              "    pm.expect(responseData.id).to.eql(requestData.id);\r",
+              "    pm.expect(responseData.userName).to.eql(requestData.userName);\r",
+              "    pm.expect(responseData.password).to.eql(requestData.password);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\":2,\r\n    \"userName\": \"userN\",\r\n    \"password\": \"passN\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Users/:id",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Users",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Users",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create Activity",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Status of completion is false\", function(){\r",
+              "    pm.expect(response[\"completed\"]).to.eql(false);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\":2,\r\n    \"title\": \"Activity 2\",\r\n    \"dueDate\": \"2026-04-01T11:04:44.1143591+00:00\",\r\n    \"completed\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete author",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200 OK\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Authors/:id",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Authors",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "{{id}}",
+      "value": ""
+    }
+  ]
+}
