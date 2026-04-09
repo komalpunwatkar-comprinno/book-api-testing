@@ -70,7 +70,7 @@
               "    pm.response.to.have.status(200);\r",
               "});\r",
               "\r",
-              "pm.test(\"Response time is less then 200\", function(){\r",
+              "pm.test(\"Response time is less then 1000\", function(){\r",
               "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
               "});\r",
               ""
