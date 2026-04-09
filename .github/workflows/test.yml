@@ -15,4 +15,4 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Collection
-        run: newman run collection.json
+        run: newman run collection.json -r cli,html --reporter-html-export report.html
